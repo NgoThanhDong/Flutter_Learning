@@ -9,9 +9,14 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       home: Scaffold(
-        body: Center(
+        appBar: AppBar (
+          title: const Text('Layout cơ bản trong Flutter'),
+          backgroundColor: Colors.yellowAccent,
+          foregroundColor: Colors.blueAccent,
+        ),
+        body: const Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
