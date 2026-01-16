@@ -12,7 +12,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       home: Scaffold(
-        appBar: AppBar(title: const Text('Flutter Web - Bài đầu tiên')),
+        appBar: AppBar(title: const Text('Flutter Web - Bài đầu tiên 🥇')),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
