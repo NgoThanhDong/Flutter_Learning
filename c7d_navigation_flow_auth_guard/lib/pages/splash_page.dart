@@ -24,7 +24,7 @@ class _SplashPageState extends State<SplashPage> {
 
       debugPrint('🚀 Splash redirect → $target');
 
-      Navigator.of(context).pushReplacementNamed(target);
+      Navigator.of(context).pushNamedAndRemoveUntil(target, (route) => false);
     });
   }
 

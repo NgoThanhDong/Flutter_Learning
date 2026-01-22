@@ -11,13 +11,30 @@ class HomePage extends StatelessWidget {
     debugPrint('🏠 HomePage build');
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Home')),
+      appBar: AppBar(
+        title: const Text('Home'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () {
+              authState.logout();
+
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                '/login',
+                (route) => false,
+              );
+            },
+          ),
+        ],
+      ),
       body: Center(
         child: ElevatedButton(
           onPressed: () {
             authState.logout();
-            Navigator.of(context)
-                .pushReplacementNamed('/login');
+            Navigator.of(
+              context,
+            ).pushNamedAndRemoveUntil('/login', (route) => false);
           },
           child: const Text('LOGOUT'),
         ),
