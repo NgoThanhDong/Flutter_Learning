@@ -14,6 +14,7 @@ class ProfilePage extends StatelessWidget {
         child: ElevatedButton(
           child: const Text('Edit Profile'),
           onPressed: () {
+            debugPrint('➡️ PUSH EditProfilePage');
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (_) => const EditProfilePage(),

@@ -18,12 +18,16 @@ class _HomeShellPageState extends State<HomeShellPage> {
   ];
 
   void _onTap(int index) {
+    debugPrint('🔁 Tap tab $index');
+
     if (index == _currentIndex) {
+      debugPrint('↩️ Pop to root of tab $index');
       // Pop về root của tab
       _navigatorKeys[index]
           .currentState
           ?.popUntil((route) => route.isFirst);
     } else {
+      debugPrint('🔀 Switch tab $_currentIndex → $index');
       setState(() => _currentIndex = index);
     }
   }

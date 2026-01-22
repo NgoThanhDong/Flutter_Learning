@@ -14,6 +14,7 @@ class HomePage extends StatelessWidget {
         child: ElevatedButton(
           child: const Text('Go to Home Detail'),
           onPressed: () {
+            debugPrint('➡️ PUSH HomeDetail');
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (_) => const HomeDetailPage(),
