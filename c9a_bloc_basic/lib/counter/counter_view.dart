@@ -9,26 +9,27 @@ class CounterView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CounterBloc, CounterState>(
-      builder: (context, state) {
-        return Scaffold(
-          appBar: AppBar(title: const Text('Bloc for kids')),
-          body: Center(
-            child: state.isLoading
-                ? const CircularProgressIndicator()
-                : Text(
-                    'Count: ${state.count}',
-                    style: const TextStyle(fontSize: 32),
-                  ),
-          ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              context.read<CounterBloc>().add(IncrementPressed());
-            },
-            child: const Icon(Icons.add),
-          ),
-        );
-      },
+    return Scaffold(
+      appBar: AppBar(title: const Text('Bloc for kids')),
+      body: Center(
+        child: BlocBuilder<CounterBloc, CounterState>(
+          builder: (context, state) {
+            if (state.isLoading) {
+              return const CircularProgressIndicator();
+            }
+            return Text(
+              'Count: ${state.count}',
+              style: const TextStyle(fontSize: 48),
+            );
+          },
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          context.read<CounterBloc>().add(IncrementPressed());
+        },
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }
