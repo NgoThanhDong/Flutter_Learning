@@ -16,19 +16,47 @@ class ProductView extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           case ProductStatus.error:
             return Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  context.read<ProductBloc>().add(LoadProducts());
-                },
-                child: const Text('Retry'),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('Error: ${state.error}'),
+                  SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () {
+                      context.read<ProductBloc>().add(RetryLoad());
+                    },
+                    child: const Text('Retry'),
+                  ),
+                ],
               ),
             );
           case ProductStatus.empty:
-            return const Center(child: Text('No products'));
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('No products'),
+                  SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () {
+                      context.read<ProductBloc>().add(RefreshProducts());
+                    },
+                    child: const Text('Refresh'),
+                  ),
+                ],
+              ),
+            );
           case ProductStatus.success:
             return ListView(
               children: state.products
-                  .map((e) => ListTile(title: Text(e)))
+                  .map(
+                    (e) => ListTile(
+                      title: Text(e),
+                      subtitle: const Text('Product description here'),
+                      leading: const Icon(Icons.shopping_cart),
+                      trailing: const Icon(Icons.arrow_forward_ios),
+                    ),
+                  )
                   .toList(),
             );
         }
